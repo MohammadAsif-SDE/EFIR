@@ -16,7 +16,29 @@ public partial class PoliceDashboard : System.Web.UI.Page
             Response.Redirect("PoliceLogin.aspx");
 
         if (!IsPostBack)
+        {
+            CheckChiefAccess();
             LoadData();
+        }
+    }
+
+    void CheckChiefAccess()
+    {
+        string cs = ConfigurationManager.ConnectionStrings["efir_dbConnectionString"].ConnectionString;
+        using (SqlConnection con = new SqlConnection(cs))
+        {
+            string query = "SELECT is_chief FROM Police WHERE username=@u";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@u", Session["Police"].ToString());
+            con.Open();
+            object result = cmd.ExecuteScalar();
+            con.Close();
+            
+            bool isChief = result != null && Convert.ToBoolean(result);
+            btnRegisterPolice.Visible = isChief;
+            btnManageStations.Visible = isChief;
+            btnAssignCases.Visible = isChief;
+        }
     }
 
     void LoadData()
@@ -181,5 +203,20 @@ public partial class PoliceDashboard : System.Web.UI.Page
     {
         Session.Clear();
         Response.Redirect("PoliceLogin.aspx");
+    }
+
+    protected void btnRegisterPolice_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("PoliceRegistration.aspx");
+    }
+
+    protected void btnManageStations_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("PoliceStations.aspx");
+    }
+
+    protected void btnAssignCases_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AssignCases.aspx");
     }
 }

@@ -10,9 +10,11 @@
     <form id="form1" runat="server">
     <div>
         <h2>Police Dashboard</h2>
-
-
-        <asp:Button ID="btnLogout" runat="server" OnClick="btnLogout_Click" Text="Logout" />
+        
+    <asp:Button ID="btnRegisterPolice" runat="server" Text="Register Police" OnClick="btnRegisterPolice_Click" />
+    <asp:Button ID="btnManageStations" runat="server" Text="Manage Stations" OnClick="btnManageStations_Click" />
+    <asp:Button ID="btnAssignCases" runat="server" Text="Assign Cases" OnClick="btnAssignCases_Click" />
+    <asp:Button ID="btnLogout" runat="server" OnClick="btnLogout_Click" Text="Logout" />
 
 
         <br />

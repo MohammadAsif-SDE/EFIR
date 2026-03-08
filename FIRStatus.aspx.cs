@@ -51,7 +51,11 @@ public partial class FIRStatus : System.Web.UI.Page
 
         using (SqlConnection con = new SqlConnection(cs))
         {
-            string query = "SELECT fir_id, complaint_name, mobile, incident_date, incident_place, status, police_notes FROM FIR WHERE fir_id=@id";
+            string query = "SELECT f.fir_id, f.complaint_name, f.mobile, f.incident_date, f.incident_place, " +
+                           "f.status, f.police_notes, ISNULL(f.investigation_status, 'Pending') as investigation_status, " +
+                           "ISNULL(p.full_name, 'Not Assigned') as assigned_to_name " +
+                           "FROM FIR f LEFT JOIN Police p ON f.assigned_to = p.PoliceId " +
+                           "WHERE f.fir_id=@id";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@id", firId);
 
@@ -67,6 +71,8 @@ public partial class FIRStatus : System.Web.UI.Page
                 lblDate.Text = Convert.ToDateTime(reader["incident_date"]).ToString("yyyy-MM-dd");
                 lblPlace.Text = reader["incident_place"].ToString();
                 lblStatus.Text = reader["status"].ToString();
+                lblInvestStatus.Text = reader["investigation_status"].ToString();
+                lblAssignedTo.Text = reader["assigned_to_name"].ToString();
                 lblPoliceNotes.Text = reader["police_notes"] == DBNull.Value || string.IsNullOrWhiteSpace(reader["police_notes"].ToString())
                     ? "-"
                     : reader["police_notes"].ToString();

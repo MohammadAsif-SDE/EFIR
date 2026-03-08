@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <h2>Search FIR Status</h2>
+        <h2>Search FIR Case Status</h2>
 
         Reference Number:
         <asp:TextBox ID="txtReference" runat="server" placeholder="Example: FIR-000001" />
@@ -42,6 +42,14 @@
 
             <strong>Status:</strong>
             <asp:Label ID="lblStatus" runat="server" />
+            <br /><br />
+
+            <strong>Investigation Status:</strong>
+            <asp:Label ID="lblInvestStatus" runat="server" />
+            <br /><br />
+
+            <strong>Assigned To:</strong>
+            <asp:Label ID="lblAssignedTo" runat="server" />
             <br /><br />
 
             <strong>Police Notes:</strong>
