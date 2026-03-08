@@ -132,6 +132,10 @@
                 <span class="result-label">Incident Place:</span>
                 <span class="result-value"><asp:Label ID="lblPlace" runat="server" /></span>
             </div>
+             <div class="result-row">
+                <span class="result-label">Description:</span>
+                <span class="result-value"><asp:Label ID="lblDescription" runat="server" /></span>
+            </div>
 
             <div class="result-row">
                 <span class="result-label">Status:</span>

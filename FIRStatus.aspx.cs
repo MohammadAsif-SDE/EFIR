@@ -51,7 +51,7 @@ public partial class FIRStatus : System.Web.UI.Page
 
         using (SqlConnection con = new SqlConnection(cs))
         {
-            string query = "SELECT fir_id, complaint_name, mobile, incident_date, incident_place, status, police_notes FROM FIR WHERE fir_id=@id";
+            string query = "SELECT fir_id, complaint_name, mobile, incident_date, incident_place, description, status, police_notes FROM FIR WHERE fir_id=@id";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@id", firId);
 
@@ -66,6 +66,7 @@ public partial class FIRStatus : System.Web.UI.Page
                 lblMobile.Text = reader["mobile"].ToString();
                 lblDate.Text = Convert.ToDateTime(reader["incident_date"]).ToString("yyyy-MM-dd");
                 lblPlace.Text = reader["incident_place"].ToString();
+                lblDescription.Text = reader["description"].ToString();
                 lblStatus.Text = reader["status"].ToString();
                 lblPoliceNotes.Text = reader["police_notes"] == DBNull.Value || string.IsNullOrWhiteSpace(reader["police_notes"].ToString())
                     ? "-"

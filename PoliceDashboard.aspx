@@ -36,7 +36,7 @@
             background: #f0f0f0;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1500px;
             margin: 20px auto;
             padding: 20px;
             background: white;
