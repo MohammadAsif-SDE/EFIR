@@ -42,6 +42,10 @@
 
             <strong>Status:</strong>
             <asp:Label ID="lblStatus" runat="server" />
+            <br /><br />
+
+            <strong>Police Notes:</strong>
+            <asp:Label ID="lblPoliceNotes" runat="server" />
         </asp:Panel>
 
         <br /><br />
