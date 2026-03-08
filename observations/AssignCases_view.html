@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assign Cases - Observation View</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header h2 {
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        select {
+            padding: 6px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 200px;
+        }
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>Case Assignment Management</h2>
+    </div>
+    
+    <div class="container">
+        <h3>Assign Cases to Police Officers</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>FIR ID</th>
+                    <th>FIR Number</th>
+                    <th>Complaint Name</th>
+                    <th>Incident Date</th>
+                    <th>Incident Place</th>
+                    <th>Status</th>
+                    <th>Assigned To</th>
+                    <th>Select Officer</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>FIR-2026-000001</td>
+                    <td>John Doe</td>
+                    <td>2026-03-08</td>
+                    <td>City Center</td>
+                    <td>Approved</td>
+                    <td>-</td>
+                    <td>
+                        <select>
+                            <option>-- Select Officer --</option>
+                            <option>John Smith (officer001)</option>
+                            <option>Jane Doe (officer002)</option>
+                        </select>
+                    </td>
+                    <td><button class="btn">Assign</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>FIR-2026-000002</td>
+                    <td>Mary Johnson</td>
+                    <td>2026-03-07</td>
+                    <td>North Avenue</td>
+                    <td>Approved</td>
+                    <td>John Smith</td>
+                    <td>
+                        <select>
+                            <option>-- Select Officer --</option>
+                            <option>John Smith (officer001)</option>
+                            <option>Jane Doe (officer002)</option>
+                        </select>
+                    </td>
+                    <td><button class="btn">Assign</button></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>FIR-2026-000003</td>
+                    <td>Robert Brown</td>
+                    <td>2026-03-06</td>
+                    <td>West Street</td>
+                    <td>Approved</td>
+                    <td>-</td>
+                    <td>
+                        <select>
+                            <option>-- Select Officer --</option>
+                            <option>John Smith (officer001)</option>
+                            <option>Jane Doe (officer002)</option>
+                        </select>
+                    </td>
+                    <td><button class="btn">Assign</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

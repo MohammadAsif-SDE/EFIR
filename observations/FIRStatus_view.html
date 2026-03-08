@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FIR Status - Observation View</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .result-panel {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin-top: 20px;
+        }
+        .result-row {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .result-row:last-child {
+            border-bottom: none;
+        }
+        .result-label {
+            font-weight: bold;
+            color: #555;
+            display: inline-block;
+            min-width: 150px;
+        }
+        .result-value {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Search FIR Status</h2>
+
+        <div class="search-box">
+            <input type="text" placeholder="Example: FIR-000001" />
+            <button class="btn">Search</button>
+        </div>
+
+        <div class="result-panel">
+            <div class="result-row">
+                <span class="result-label">Reference Number:</span>
+                <span class="result-value">FIR-000001</span>
+            </div>
+
+            <div class="result-row">
+                <span class="result-label">Complaint Name:</span>
+                <span class="result-value">John Doe</span>
+            </div>
+
+            <div class="result-row">
+                <span class="result-label">Mobile:</span>
+                <span class="result-value">9876543210</span>
+            </div>
+
+            <div class="result-row">
+                <span class="result-label">Incident Date:</span>
+                <span class="result-value">2026-03-08</span>
+            </div>
+
+            <div class="result-row">
+                <span class="result-label">Incident Place:</span>
+                <span class="result-value">City Center</span>
+            </div>
+
+            <div class="result-row">
+                <span class="result-label">Status:</span>
+                <span class="result-value">Approved</span>
+            </div>
+
+            <div class="result-row">
+                <span class="result-label">Police Notes:</span>
+                <span class="result-value">Case under investigation</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
