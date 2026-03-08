@@ -5,19 +5,110 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Police Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header h2 {
+            margin: 0;
+            display: inline-block;
+        }
+        .btn-logout {
+            float: right;
+            background: white;
+            color: #667eea;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-logout:hover {
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .message {
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        table tr:hover {
+            background: #f8f9fa;
+        }
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus, select:focus, textarea:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        .grid-btn {
+            background: #667eea;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 2px;
+        }
+        .grid-btn:hover {
+            background: #5568d3;
+        }
+        .delete-btn {
+            background: #dc3545;
+        }
+        .delete-btn:hover {
+            background: #c82333;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div class="header">
         <h2>Police Dashboard</h2>
-
-
-        <asp:Button ID="btnLogout" runat="server" OnClick="btnLogout_Click" Text="Logout" />
-
-
-        <br />
-        <asp:Label ID="lblMsg" runat="server" ForeColor="Red" />
-        <br /><br />
+        <asp:Button ID="btnLogout" runat="server" OnClick="btnLogout_Click" Text="Logout" CssClass="btn-logout" />
+    </div>
+    
+    <div class="container">
+        <asp:Label ID="lblMsg" runat="server" ForeColor="Red" CssClass="message" />
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="fir_id" 
             OnRowEditing="GridView1_RowEditing" 
             OnRowUpdating="GridView1_RowUpdating" 
