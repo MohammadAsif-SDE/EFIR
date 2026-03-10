@@ -20,8 +20,8 @@ public partial class RegisterFIR : System.Web.UI.Page
         using (SqlConnection con = new SqlConnection(cs))
         {
             string query = "INSERT INTO Fir (complaint_name, mobile, incident_date, Incident_place, description, status) " +
-                           "VALUES (@name, @mobile, @date, @place, @desc, 'Pending'); " +
-                           "SELECT CAST(SCOPE_IDENTITY() AS INT);";
+                           "OUTPUT INSERTED.fir_id " +
+                           "VALUES (@name, @mobile, @date, @place, @desc, 'Pending');";
 
             SqlCommand cmd = new SqlCommand(query, con);
 
@@ -35,8 +35,8 @@ public partial class RegisterFIR : System.Web.UI.Page
             int firId = Convert.ToInt32(cmd.ExecuteScalar());
             con.Close();
 
-            string referenceNumber = "FIR-" + firId.ToString("D6");
-            Response.Redirect("FIRStatus.aspx?ref=" + Server.UrlEncode(referenceNumber));
+            lblMsg.Text = "Complaint registered successfully. Your FIR ID is " + firId + ".";
+            lnkCheckStatus.Visible = true;
         }
     }
 }

@@ -19,46 +19,49 @@
 
         <br />
         <asp:Label ID="lblMsg" runat="server" ForeColor="Red" />
+
+        <hr />
+        <h3>Update FIR Status</h3>
+        FIR ID:
+        <asp:DropDownList ID="ddlFirId" runat="server" />
         <br /><br />
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="fir_id" 
-            OnRowEditing="GridView1_RowEditing" 
-            OnRowUpdating="GridView1_RowUpdating" 
-            OnRowCancelingEdit="GridView1_RowCancelingEdit"
-            OnRowDeleting="GridView1_RowDeleting">
+
+        Status:
+        <asp:DropDownList ID="ddlStatusUpdate" runat="server">
+            <asp:ListItem Text="Pending" Value="Pending" />
+            <asp:ListItem Text="Approved" Value="Approved" />
+            <asp:ListItem Text="Rejected" Value="Rejected" />
+        </asp:DropDownList>
+        <br /><br />
+
+        FIR Number:
+        <asp:TextBox ID="txtFirNumberUpdate" runat="server" Width="220px" />
+        <br /><br />
+
+        Police Notes:
+        <asp:TextBox ID="txtPoliceNotesUpdate" runat="server" Width="320px" />
+        <br /><br />
+
+        <asp:Button ID="btnUpdateStatus" runat="server" Text="Update" OnClick="btnUpdateStatus_Click" />
+        <asp:Button ID="btnDeleteFIR" runat="server" Text="Delete FIR" OnClick="btnDeleteFIR_Click"
+            OnClientClick="return confirm('Are you sure you want to delete this FIR?');" />
+        <br />
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="fir_id">
             <Columns>
                 <asp:BoundField DataField="fir_id" HeaderText="fir_id" InsertVisible="False" ReadOnly="True" SortExpression="fir_id" />
-                <asp:BoundField DataField="fir_number" HeaderText="fir_number" ReadOnly="True" SortExpression="fir_number" />
                 <asp:BoundField DataField="complaint_name" HeaderText="complaint_name" SortExpression="complaint_name" />
                 <asp:BoundField DataField="mobile" HeaderText="mobile" SortExpression="mobile" />
                 <asp:BoundField DataField="incident_date" HeaderText="incident_date" SortExpression="incident_date" />
                 <asp:BoundField DataField="incident_place" HeaderText="incident_place" SortExpression="incident_place" />
                 <asp:BoundField DataField="description" HeaderText="description" SortExpression="description" />
-                <asp:TemplateField HeaderText="status" SortExpression="status">
-                    <ItemTemplate>
-                        <asp:Label ID="lblStatus" runat="server" Text='<%# Eval("status") %>' />
-                    </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:DropDownList ID="ddlStatus" runat="server">
-                            <asp:ListItem Text="Pending" Value="Pending" />
-                            <asp:ListItem Text="Approved" Value="Approved" />
-                            <asp:ListItem Text="Rejected" Value="Rejected" />
-                        </asp:DropDownList>
-                    </EditItemTemplate>
-                </asp:TemplateField>
-
-                <asp:TemplateField HeaderText="police_notes" SortExpression="police_notes">
-                    <ItemTemplate>
-                        <asp:Label ID="lblPoliceNotes" runat="server" Text='<%# Eval("police_notes") %>' />
-                    </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:TextBox ID="txtPoliceNotes" runat="server" Text='<%# Bind("police_notes") %>' Width="220px" />
-                    </EditItemTemplate>
-                </asp:TemplateField>
-
-                <asp:CommandField ShowEditButton="True" />
-                <asp:CommandField ShowDeleteButton="True" />
+                <asp:BoundField DataField="status" HeaderText="status" SortExpression="status" />
+                <asp:BoundField DataField="police_notes" HeaderText="police_notes" SortExpression="police_notes" />
+                <asp:BoundField DataField="fir_number" HeaderText="fir_number" SortExpression="fir_number" />
+                <asp:BoundField DataField="assigned_to" HeaderText="assigned_to" SortExpression="assigned_to" />
+                <asp:BoundField DataField="investigation_status" HeaderText="investigation_status" SortExpression="investigation_status" />
             </Columns>
         </asp:GridView>
+        <br />
 
     </div>
     </form>

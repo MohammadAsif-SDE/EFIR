@@ -16,33 +16,26 @@
         <asp:Label ID="lblMsg" runat="server" ForeColor="Green" />
         <br /><br />
 
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="fir_id"
-            OnRowEditing="GridView1_RowEditing"
-            OnRowUpdating="GridView1_RowUpdating"
-            OnRowCancelingEdit="GridView1_RowCancelingEdit">
+        FIR ID:
+        <asp:DropDownList ID="ddlFirId" runat="server" />
+        <br /><br />
+
+        Police:
+        <asp:DropDownList ID="ddlPolice" runat="server" />
+        <br /><br />
+
+        <asp:Button ID="btnAssign" runat="server" Text="Assign" OnClick="btnAssign_Click" />
+        <br /><br />
+
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="fir_id">
             <Columns>
                 <asp:BoundField DataField="fir_id" HeaderText="FIR ID" ReadOnly="True" />
                 <asp:BoundField DataField="fir_number" HeaderText="FIR Number" ReadOnly="True" />
                 <asp:BoundField DataField="complaint_name" HeaderText="Complainant" ReadOnly="True" />
                 <asp:BoundField DataField="incident_place" HeaderText="Place" ReadOnly="True" />
                 <asp:BoundField DataField="description" HeaderText="Description" ReadOnly="True" />
-                
-                <asp:TemplateField HeaderText="Assigned To">
-                    <ItemTemplate>
-                        <asp:Label ID="lblAssigned" runat="server" Text='<%# Eval("assigned_to_name") %>' />
-                    </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:DropDownList ID="ddlPolice" runat="server" />
-                    </EditItemTemplate>
-                </asp:TemplateField>
-
-                <asp:TemplateField HeaderText="Investigation Status">
-                    <ItemTemplate>
-                        <asp:Label ID="lblInvestStatus" runat="server" Text='<%# Eval("investigation_status") %>' />
-                    </ItemTemplate>
-                </asp:TemplateField>
-
-                <asp:CommandField ShowEditButton="True" />
+                <asp:BoundField DataField="assigned_to_name" HeaderText="Assigned To" ReadOnly="True" />
+                <asp:BoundField DataField="investigation_status" HeaderText="Investigation Status" ReadOnly="True" />
             </Columns>
         </asp:GridView>
     </div>

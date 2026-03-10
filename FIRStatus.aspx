@@ -11,8 +11,8 @@
     <div>
         <h2>Search FIR Case Status</h2>
 
-        Reference Number:
-        <asp:TextBox ID="txtReference" runat="server" placeholder="Example: FIR-000001" />
+        FIR ID:
+        <asp:TextBox ID="txtReference" runat="server" placeholder="Example: 1" />
         <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
 
         <br /><br />
@@ -20,7 +20,7 @@
 
         <br /><br />
         <asp:Panel ID="pnlResult" runat="server" Visible="false">
-            <strong>Reference Number:</strong>
+            <strong>FIR ID:</strong>
             <asp:Label ID="lblReference" runat="server" />
             <br /><br />
 

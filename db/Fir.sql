@@ -8,7 +8,7 @@ CREATE TABLE [dbo].[Fir] (
     [status]               NVARCHAR (50)  NULL,
     [police_notes]         NVARCHAR (500) NULL,
     [fir_number]           NVARCHAR (50)  NULL,
-    [assigned_to]          INT            NULL,
+    [assigned_to]          NVARCHAR(50)            NULL,
     [investigation_status] NVARCHAR (50)  DEFAULT ('Pending') NULL,
     PRIMARY KEY CLUSTERED ([fir_id] ASC)
 );

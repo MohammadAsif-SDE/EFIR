@@ -31,6 +31,9 @@
 
         <br /><br />
         <asp:Label ID="lblMsg" runat="server" ForeColor="Green" />
+        <br />
+        <asp:HyperLink ID="lnkCheckStatus" runat="server" NavigateUrl="~/FIRStatus.aspx"
+            Text="Check FIR Status" Visible="false" />
     </div>
     </form>
 </body>

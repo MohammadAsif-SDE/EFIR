@@ -19,25 +19,20 @@ public partial class PoliceLogin : System.Web.UI.Page
 
         using (SqlConnection con = new SqlConnection(cs))
         {
-            string query = "SELECT is_chief FROM Police WHERE username=@u AND password=@p";
+            string query = "SELECT COUNT(*) FROM Police WHERE username=@u AND password=@p";
 
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@u", txtUser.Text.Trim());
             cmd.Parameters.AddWithValue("@p", txtPass.Text);
 
             con.Open();
-            object result = cmd.ExecuteScalar();
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
             con.Close();
 
-            if (result != null)
+            if (count > 0)
             {
                 Session["Police"] = txtUser.Text.Trim();
-                bool isChief = Convert.ToBoolean(result);
-                
-                if (isChief)
-                    Response.Redirect("PoliceDashboard.aspx");
-                else
-                    Response.Redirect("PoliceHome.aspx");
+                Response.Redirect("PoliceDashboard.aspx");
             }
             else
             {

@@ -6,44 +6,22 @@ public partial class FIRStatus : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-        {
-            string reference = Request.QueryString["ref"];
-            if (!string.IsNullOrWhiteSpace(reference))
-            {
-                txtReference.Text = reference.Trim();
-                SearchAndBind(reference, true);
-            }
-        }
     }
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-        SearchAndBind(txtReference.Text, false);
+        SearchAndBind(txtReference.Text);
     }
 
-    private void SearchAndBind(string referenceInput, bool fromRegistrationRedirect)
+    private void SearchAndBind(string firIdInput)
     {
         lblMsg.ForeColor = System.Drawing.Color.Red;
         pnlResult.Visible = false;
 
-        if (string.IsNullOrWhiteSpace(referenceInput))
-        {
-            lblMsg.Text = "Please enter a reference number.";
-            return;
-        }
-
         int firId;
-        string normalizedReference = referenceInput.Trim().ToUpperInvariant();
-
-        if (normalizedReference.StartsWith("FIR-"))
+        if (!int.TryParse(firIdInput.Trim(), out firId))
         {
-            normalizedReference = normalizedReference.Substring(4);
-        }
-
-        if (!int.TryParse(normalizedReference, out firId))
-        {
-            lblMsg.Text = "Invalid reference number format.";
+            lblMsg.Text = "Enter a valid FIR ID.";
             return;
         }
 
@@ -51,11 +29,13 @@ public partial class FIRStatus : System.Web.UI.Page
 
         using (SqlConnection con = new SqlConnection(cs))
         {
-            string query = "SELECT f.fir_id, f.complaint_name, f.mobile, f.incident_date, f.incident_place, " +
-                           "f.status, f.police_notes, ISNULL(f.investigation_status, 'Pending') as investigation_status, " +
-                           "ISNULL(p.full_name, 'Not Assigned') as assigned_to_name " +
-                           "FROM FIR f LEFT JOIN Police p ON f.assigned_to = p.PoliceId " +
-                           "WHERE f.fir_id=@id";
+            string query = @"SELECT f.fir_id, f.complaint_name, f.mobile, f.incident_date, f.incident_place,
+                                    f.status,
+                                    COALESCE(f.investigation_status, 'Pending') AS investigation_status,
+                             COALESCE(NULLIF(CAST(f.assigned_to AS NVARCHAR(100)), ''), 'Not Assigned') AS assigned_to_name,
+                                    f.police_notes
+                             FROM FIR f
+                             WHERE f.fir_id = @id";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@id", firId);
 
@@ -64,8 +44,7 @@ public partial class FIRStatus : System.Web.UI.Page
 
             if (reader.Read())
             {
-                string formattedReference = "FIR-" + Convert.ToInt32(reader["fir_id"]).ToString("D6");
-                lblReference.Text = formattedReference;
+                lblReference.Text = reader["fir_id"].ToString();
                 lblName.Text = reader["complaint_name"].ToString();
                 lblMobile.Text = reader["mobile"].ToString();
                 lblDate.Text = Convert.ToDateTime(reader["incident_date"]).ToString("yyyy-MM-dd");
@@ -79,19 +58,11 @@ public partial class FIRStatus : System.Web.UI.Page
 
                 pnlResult.Visible = true;
                 lblMsg.ForeColor = System.Drawing.Color.Green;
-
-                if (fromRegistrationRedirect)
-                {
-                    lblMsg.Text = "FIR registered successfully. Your reference number is " + formattedReference + ".";
-                }
-                else
-                {
-                    lblMsg.Text = "FIR status found.";
-                }
+                lblMsg.Text = "FIR status found.";
             }
             else
             {
-                lblMsg.Text = "No FIR found for this reference number.";
+                lblMsg.Text = "No FIR found for this ID.";
             }
 
             reader.Close();

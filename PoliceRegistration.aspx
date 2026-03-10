@@ -25,23 +25,17 @@
         Badge Number:
         <asp:TextBox ID="txtBadgeNumber" runat="server" /><br /><br />
 
+        Station:
+        <asp:DropDownList ID="ddlStation" runat="server" />
+        <br /><br />
+
         <asp:Button ID="btnRegister" runat="server" Text="Register Police" OnClick="btnRegister_Click" />
         <br /><br />
         <asp:Label ID="lblMsg" runat="server" ForeColor="Green" />
 
         <hr />
         <h3>Registered Police</h3>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="PoliceId"
-            OnRowDeleting="GridView1_RowDeleting">
-            <Columns>
-                <asp:BoundField DataField="PoliceId" HeaderText="ID" ReadOnly="True" />
-                <asp:BoundField DataField="username" HeaderText="Username" />
-                <asp:BoundField DataField="full_name" HeaderText="Full Name" />
-                <asp:BoundField DataField="badge_number" HeaderText="Badge Number" />
-                <asp:BoundField DataField="station_name" HeaderText="Station" />
-                <asp:CommandField ShowDeleteButton="True" />
-            </Columns>
-        </asp:GridView>
+        
     </div>
     </form>
 </body>
